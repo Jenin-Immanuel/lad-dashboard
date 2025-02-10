@@ -10,12 +10,55 @@ import {
 } from "react-icons/fi";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-export const RouteSelect = () => {
+import { RoleType } from "./Sidebar";
+
+interface RouteSelectProps {
+  role: RoleType;
+}
+export const RouteSelect = ({ role }: RouteSelectProps) => {
+  console.log(role);
   const pathname = usePathname();
+  const currentRoutes = (() => {
+    switch (role) {
+      case "STUDENT":
+        return (
+          <>
+            <Route
+              Icon={FiHome}
+              selected={pathname === "/"}
+              title="Dashboard"
+              href="/"
+            />
+            <Route
+              Icon={FiUsers}
+              selected={pathname === "/courses"}
+              title="Courses"
+              href="/courses"
+            />
+          </>
+        );
+
+      case "ADMIN":
+        return (
+          <>
+            <Route
+              Icon={FiPaperclip}
+              selected={pathname === "/admin/get-student-details"}
+              title="Get Student Details"
+              href="/admin/get-student-details"
+            />
+          </>
+        );
+
+      default:
+        return null;
+    }
+  })();
 
   return (
     <div className="space-y-1">
-      <Route
+      {currentRoutes}
+      {/* <Route
         Icon={FiHome}
         selected={pathname === "/"}
         title="Dashboard"
@@ -26,7 +69,7 @@ export const RouteSelect = () => {
         selected={pathname === "/courses"}
         title="Courses"
         href="/courses"
-      />
+      /> */}
       {/* <Route Icon={FiPaperclip} selected={false} title="Invoices" />
       <Route Icon={FiLink} selected={false} title="Integrations" />
       <Route Icon={FiDollarSign} selected={false} title="Finance" /> */}

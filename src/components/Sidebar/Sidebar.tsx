@@ -4,8 +4,12 @@ import { Search } from "./Search";
 import { RouteSelect } from "./RouteSelect";
 import { Plan } from "./Plan";
 import Logo from "./Logo";
+import { currentUser } from "@clerk/nextjs/server";
 
-export const Sidebar = () => {
+export type RoleType = "STUDENT" | "ADMIN" | undefined;
+
+export const Sidebar = async () => {
+  const user = await currentUser();
   return (
     <div>
       <div className="overflow-y-scroll sticky top-4 h-[calc(100vh-32px-48px)]">
@@ -14,7 +18,7 @@ export const Sidebar = () => {
           <div>Learning Lens</div>
         </div>
         <Search />
-        <RouteSelect />
+        <RouteSelect role={user?.publicMetadata?.role as RoleType} />
       </div>
       <Plan />
     </div>

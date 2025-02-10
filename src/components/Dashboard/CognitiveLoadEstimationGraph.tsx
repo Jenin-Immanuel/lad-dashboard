@@ -10,7 +10,7 @@ interface CognitiveLoadEstimationGraphProps {
 }
 
 export const CognitiveLoadEstimationGraph = ({
-  value = 0,
+  value,
 }: CognitiveLoadEstimationGraphProps) => {
   return (
     <div className="bg-white col-span-4 overflow-hidden rounded border border-stone-300">

@@ -104,7 +104,7 @@ export default function Page() {
 
   return (
     <div className="bg-gray rounded-lg pb-4">
-      <TopBar />
+      <TopBar className="mt-2" />
       <div className="col-span-12 bg-white rounded-lg border border-stone-200 p-4 mx-4">
         <h2 className="text-lg font-semibold mb-4">Course Filters</h2>
 
